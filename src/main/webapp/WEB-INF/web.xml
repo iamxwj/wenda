@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	version="3.1">
+
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+	<filter>
+		<filter-name>openEntityManagerInViewFilter</filter-name>
+		<filter-class>org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>openEntityManagerInViewFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter>
+		<!-- simon统计filter -->
+		<filter-name>simon-filter</filter-name>
+		<filter-class>org.javasimon.javaee.SimonServletFilter</filter-class>
+		<!-- optional -->
+		<init-param>
+			<param-name>prefix</param-name>
+			<param-value>com.cloud.web</param-value>
+		</init-param>
+		<!-- optional basic plain-text console -->
+		<init-param>
+			<param-name>console-path</param-name>
+			<param-value>/simon-filter</param-value>
+		</init-param>
+		<!-- optional, 需要报告的阀值 -->
+		<init-param>
+			<param-name>report-threshold-ms</param-name>
+			<param-value>1000</param-value>
+		</init-param>
+		<!-- optional, 告警 - 显示到标准输出，可以自己定制报告 -->
+		<init-param>
+			<param-name>request-reporter-class</param-name>
+			<param-value>org.javasimon.javaee.reqreporter.StandardRequestReporter</param-value>
+		</init-param>
+		<!-- optional, StopwatchSource instance -->
+		<init-param>
+			<param-name>stopwatch-source-props</param-name>
+			<param-value>includeHttpMethodName=ALWAYS</param-value>
+		</init-param>
+	</filter>
+
+	<!-- Web Console 显示Web统计信息，访问/simon-console 查看-->
+	<filter>
+		<filter-name>simon-console-filter</filter-name>
+		<filter-class>org.javasimon.console.SimonConsoleFilter</filter-class>
+		<init-param>
+			<param-name>url-prefix</param-name>
+			<param-value>/simon-console</param-value>
+		</init-param>
+	</filter>
+
+
+	<filter>
+		<filter-name>characterEncodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>characterEncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<!-- Tomcat加载静态资源的默认Servlet -->
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.html</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>/images/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>/css/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>/js/*</url-pattern>
+	</servlet-mapping>
+	<!-- 大部分情况web查看console不是需要监控的，注意filter顺序 -->
+	<filter-mapping>
+		<filter-name>simon-console-filter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>simon-filter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!-- 加载通用Bean -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:spring-context.xml</param-value>
+	</context-param>
+
+
+	<!-- 加载Spring MVC Bean, 这里加载的Bean不能出现在ContextLoaderListener的配置中，否则会出现重复加载 -->
+	<servlet>
+		<servlet-name>dispatcher</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:spring-mvc.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>dispatcher</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+</web-app>
