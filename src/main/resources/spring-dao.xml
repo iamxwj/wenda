@@ -42,9 +42,9 @@
     <!-- 基于容器的实体管理器工厂的配置 -->
     <bean id="entityManagerFactory" class = "org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref = "mainDataSource" />
-        <property name="packagesToScan" value="com.baodu.wd.domain" />
+        <property name="packagesToScan" value="com.wd.domain" />
         <property name="jpaVendorAdapter" ref="hibernateJpaVenderAdapter" />
-        <property name="persistenceUnitName" value="TZDR_PUP" />
+        <property name="persistenceUnitName" value="WD_PUP" />
         <property name="jpaProperties">
             <value>
                 hibernate.cache.use_second_level_cache = true
@@ -63,5 +63,5 @@
     </bean>
 
     <!-- Spring Data JPA配置 -->
-    <jpa:repositories base-package="com.baodu.wd.dao" />
+    <jpa:repositories base-package="com.wd.dao" />
 </beans>
