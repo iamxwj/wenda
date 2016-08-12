@@ -14,7 +14,7 @@ import javax.persistence.Table;
  * @version 创建时间：2016年8月11日
 */
 @Entity
-@Table(name="question_listen",schema="",catalog="djt")
+@Table(name="question_listen",schema="",catalog="wd")
 public class QuestionListenEntity {
 	private Long questionListenId;
 	private Long userId;

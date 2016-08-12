@@ -35,10 +35,25 @@ public class TestDao {
 	@Test
 	public void test() {
 		//ResponseData modifyEmail = userInfoService.modifyEmail(new UserLoginInfo());
-		Page<QuestionEntity> questionPage = questionService.getQuestionPage();
+		//Page<QuestionEntity> questionPage = questionService.getQuestionPage(1,3);
+		//int totalPages = questionPage.getTotalPages();
 		//List<QuestionEntity> content = questionPage.getContent();
+		//List<QuestionEntity> content = questionPage.getContent();
+		/*for (QuestionEntity questionEntity : content) {
+			System.out.println(questionEntity);
+		}
+		int totalPages = questionPage.getTotalPages();
+		int numberOfElements = questionPage.getNumberOfElements();
 		long totalElements = questionPage.getTotalElements();
+		boolean first = questionPage.isFirst();
+		boolean last = questionPage.isLast();*/
+		//System.out.println(totalPages);
+		/*System.out.println(first);
+		System.out.println(last);
 		System.out.println(totalElements);
+		System.out.println(numberOfElements);
+		System.out.println(totalPages);
+		System.out.println(content.size());*/
 		//System.out.println(content.size());
 		//System.out.println(ioc);
 		//System.out.println(modifyEmail);

@@ -19,6 +19,8 @@ public class QuestionEntity {
 	private int requestAmount;
 	private Timestamp responseDate;
 	private String voiceUrl;
+	private Byte questionType;
+	
 	public QuestionEntity() {
 	}
 	public QuestionEntity(Long questionId, Long requestId, Long responseId, int requestAmount, Timestamp responseDate,
@@ -73,12 +75,20 @@ public class QuestionEntity {
 		this.responseDate = responseDate;
 	}
 	
-	@Column(name="voicd_url")
+	@Column(name="voice_url")
 	public String getVoiceUrl() {
 		return voiceUrl;
 	}
 	public void setVoiceUrl(String voiceUrl) {
 		this.voiceUrl = voiceUrl;
+	}
+	
+	@Column(name="question_type")
+	public Byte getQuestionType() {
+		return questionType;
+	}
+	public void setQuestionType(Byte questionType) {
+		this.questionType = questionType;
 	}
 	@Override
 	public int hashCode() {
@@ -130,4 +140,11 @@ public class QuestionEntity {
 			return false;
 		return true;
 	}
+	@Override
+	public String toString() {
+		return "QuestionEntity [questionId=" + questionId + ", requestId=" + requestId + ", responseId=" + responseId
+				+ ", requestAmount=" + requestAmount + ", responseDate=" + responseDate + ", voiceUrl=" + voiceUrl
+				+ ", questionType=" + questionType + "]";
+	}
+	
 }
