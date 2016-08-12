@@ -30,7 +30,7 @@ public class AlidayuUtil {
         req.setSmsType("normal");
         req.setSmsFreeSignName("身份验证");
         req.setSmsParamString("{\"code\":\"" + code +
-                "\",\"product\":\"投资达人\"}");
+                "\",\"product\":\"问答\"}");
         req.setRecNum(phone);
         req.setSmsTemplateCode("SMS_12600385");
         AlibabaAliqinFcSmsNumSendResponse rsp = null;

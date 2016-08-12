@@ -8,7 +8,7 @@ import java.sql.Timestamp;
  * @date 2016/7/22.
  */
 @Entity
-@Table(name = "sms_verify", catalog = "djt")
+@Table(name = "sms_verify", catalog = "wd")
 public class SmsVerifyEntity {
     private Long smsId;
     private Long phone;
