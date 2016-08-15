@@ -19,7 +19,7 @@ import com.wd.service.UserInfoService;
 /**
  * TestDao
  * 
- * @author xwj
+ * @author xwj 
  * @version 创建时间：2016年8月11日
 */
 public class TestDao {

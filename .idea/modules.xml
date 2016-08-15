@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/wenda.iml" filepath="$PROJECT_DIR$/wenda.iml" />
       <module fileurl="file://E://wenda/wenda.iml" filepath="E://wenda/wenda.iml" />
     </modules>
   </component>
