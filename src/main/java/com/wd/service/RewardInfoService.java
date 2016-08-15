@@ -11,8 +11,7 @@ import org.springframework.data.domain.Page;
 
 import com.wd.domain.RewardInfo;
 
-
-/**   
+/*  
 *    
 * 项目名称：wenda   
 * 类名称：RewardInfoService   
@@ -23,7 +22,7 @@ import com.wd.domain.RewardInfo;
 */
 public interface RewardInfoService {
 
-	/**      
+	/*      
 	 * 方法描述：分页查询所有悬赏信息
 	 * 备注：
 	 */
@@ -32,10 +31,10 @@ public interface RewardInfoService {
 //	/**      
 //	 * 方法描述：分页查询所有悬赏信息,带条件分页
 //	 * 备注：
-//	 */
+//	 
 //	public Page<RewardInfo> findAllByType(int page, int pagesize,Byte type);
 	
-	/**      
+	/*     
 	 * 方法描述：添加悬赏信息
 	 * 备注：
 	 */

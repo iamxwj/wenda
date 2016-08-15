@@ -17,6 +17,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.wd.dao.InvestorInfoDao;
 import com.wd.dao.QuestionDao;
 import com.wd.dao.QuestionListenDao;
+import com.wd.data.ResponseData;
 import com.wd.domain.InvestorInfoEntity;
 import com.wd.domain.QuestionEntity;
 import com.wd.service.QuestionService;
@@ -41,8 +42,8 @@ public class QuestionServiceImpl implements QuestionService {
 	 */
 	@Override
 	@Transactional(readOnly=true)
-	public String getQuestionPage(Byte questionType,int page,int size) {
-		String objectToJSONString=null;
+	public ResponseData getQuestionPage(Byte questionType,int page,int size) {
+		ResponseData responseData = null;
 		if(questionType==null){
 			Page<QuestionEntity> questionPage = questionDao.findAll(new PageRequest(page-1, size));
 			Map<String,Object> map=null;
@@ -54,8 +55,8 @@ public class QuestionServiceImpl implements QuestionService {
 				if(content!=null&&content.size()!=0){
 					for (QuestionEntity questionEntity : content) {
 						map = new HashMap<>();
-						//Long responseId = questionEntity.getResponseId();
-						/*if(responseId!=null){
+						Long responseId = questionEntity.getResponseId();
+						if(responseId!=null){
 							InvestorInfoEntity findByInvestorId = investorInfoDao.findByInvestorId(responseId);
 							String investorName = findByInvestorId.getInvestorName();
 							String institutionName = findByInvestorId.getInstitutionName();
@@ -63,7 +64,7 @@ public class QuestionServiceImpl implements QuestionService {
 							map.put("answerInstitution", institutionName);
 							map.put("answerPost", investorPosition);
 							map.put("answerName", investorName);
-						}*/
+						}
 						Long questionId = questionEntity.getQuestionId();
 						if(questionId!=null){
 							long numberLister = questionListenDao.getCountByQuestionId(questionId);
@@ -74,17 +75,9 @@ public class QuestionServiceImpl implements QuestionService {
 						list.add(map);
 					}
 				}
-				try {
-					map1 = new HashMap<>();
-					map1.put("success", true);
-					map1.put("message", "获取好问列表");
-					map1.put("obj", list);
-					objectToJSONString = JSONUtil.ObjectToJSONString(map1);
-				} catch (JsonProcessingException e) {
-					e.printStackTrace();
-				}
+				responseData = new ResponseData(true, "获取好问列表", list);
 			}
-			return objectToJSONString;
+			return responseData;
 		}else{
 			Page<QuestionEntity> findByQuestionType = questionDao.findByQuestionType(questionType, new PageRequest(page-1, size));
 			Map<String,Object> map=null;
@@ -116,24 +109,16 @@ public class QuestionServiceImpl implements QuestionService {
 						list.add(map);
 					}
 				}
-				try {
-					map1 = new HashMap<>();
-					map1.put("success", true);
-					map1.put("message", "获取好问列表");
-					map1.put("obj", list);
-					objectToJSONString = JSONUtil.ObjectToJSONString(map1);
-				} catch (JsonProcessingException e) {
-					e.printStackTrace();
-				}
+				responseData = new ResponseData(true, "获取好问列表", list);
 			}
-			return objectToJSONString;
+			return responseData;
 		}
 	}
 	/**
 	 * 用于搜索好问分页
 	 * @return
 	 */
-	public String searchQuestionPage(String content,int page,int size){
+	public ResponseData searchQuestionPage(String content,int page,int size){
 		return null;
 	}
 	
