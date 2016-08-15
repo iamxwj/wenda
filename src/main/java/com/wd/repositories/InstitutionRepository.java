@@ -10,5 +10,7 @@ import org.springframework.data.elasticsearch.repository.ElasticsearchRepository
  * @date 2016/6/13.
  */
 public interface InstitutionRepository extends ElasticsearchRepository<InstitutionDocument, Long> {
+	
     Page<InstitutionDocument> findByInstitutionNameAndInstitutionMemberNames(String institutionName, String institutionMemberNames, Pageable pageable);
+
 }
