@@ -17,7 +17,7 @@ import java.sql.Timestamp;
  * @date 2016/06/12
  */
 @Entity
-@Table(name = "investor_info", schema = "", catalog = "djt")
+@Table(name = "investor_info", schema = "", catalog = "wd")
 public class InvestorInfoEntity {
     private Long investorId;
     private String status;

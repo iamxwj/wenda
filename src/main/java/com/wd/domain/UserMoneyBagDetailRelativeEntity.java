@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by Zhipeng on 2016/5/13.
  */
 @Entity
-@Table(name = "user_money_bag_detail_relative", schema = "", catalog = "djt")
+@Table(name = "user_money_bag_detail_relative", schema = "", catalog = "wd")
 public class UserMoneyBagDetailRelativeEntity {
     private Long id;
     private Long refId;

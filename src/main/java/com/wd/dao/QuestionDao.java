@@ -1,5 +1,8 @@
 package com.wd.dao;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
+
 import com.wd.domain.QuestionEntity;
 
 /**
@@ -16,4 +19,5 @@ public interface QuestionDao extends PagingAndSortingRepository<QuestionEntity, 
 	@Query("select question")
 	List<QuestionEntity> getQuestionList();
 	*/
+	Page<QuestionEntity> findByQuestionType(Byte questionType,Pageable pageable);
 }
