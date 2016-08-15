@@ -7,6 +7,8 @@
 
 package com.wd.service.impl;
 
+import com.qiniu.common.QiniuException;
+import com.qiniu.util.StringUtils;
 import com.wd.data.ResponseData;
 import com.wd.data.zimg.ZimgResult;
 import com.wd.service.ZimgService;
@@ -85,7 +87,64 @@ public class ZimgServiceImpl implements ZimgService {
 
         return new ResponseData(false, "fail", "");
     }
+    /**
+     * 上传文件到qiniu服务器
+     *
+     * @param
+     * @return
+     */
+    @Override
+    public ResponseData uploadFileToZimg(Long questionId, boolean requestor,
+                                         MultipartFile file) {
+        File directory = new File(tmpPath);
+        if (!directory.exists()) {
+            directory.mkdirs();
+        }
+        // 上传到图片服务器
+        MultipartFile f = file;
+        if (f.getSize() == 0)
+            return new ResponseData(false, "file size is 0", null);
+        String tmpFileName = tmpPath + "/" + f.getOriginalFilename();
+        File tmp = new File(tmpPath);
+        tmp = new File(tmpFileName);
+        try {
+            f.transferTo(tmp);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseData(false, "fail", "");
+        }
+        String oldName = null;
+        String newFileName = null;
+//        ProjectInfoEntity p = projectInfoDao.findByProjectId(projectId);
+        try {
 
+            String fileName = f.getOriginalFilename();
+            String suffix = QiNiuUtil.getFileSuffix(fileName);
+//            oldName = p.getBpPath();
+//            String newFileName = QiNiuUtil.getFileName(userId, suffix);
+            newFileName = QiNiuUtil.uploadFile(tmpFileName, questionId, suffix);
+        } catch (QiniuException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseData(false, "fail", "");
+        } finally {
+            if (tmp != null) {
+                tmp.setWritable(true);
+                System.gc();
+                tmp.delete();
+            }
+        }
+
+        if (!StringUtils.isNullOrEmpty(newFileName)) {
+            if (!StringUtils.isNullOrEmpty(oldName)) {
+                QiNiuUtil.deletePrevious(oldName);
+            }
+//            p.setBpPath(newFileName);
+//            projectInfoDao.save(p);
+        }
+        return new ResponseData(true, "success", newFileName);
+    }
     /**
      * 获取下载地址
      */
@@ -189,7 +248,6 @@ public class ZimgServiceImpl implements ZimgService {
 
         return respXML;
     }
-
     //    /**
 //     * 返货图片类型
 //     *

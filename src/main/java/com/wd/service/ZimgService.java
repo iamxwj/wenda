@@ -8,6 +8,7 @@
 package com.wd.service;
 
 import com.wd.data.ResponseData;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -35,6 +36,8 @@ public interface ZimgService {
 
 
     /**
-     * 删除文档
+     * 上传问答文档
      */
+    ResponseData uploadFileToZimg(Long questionId, boolean requestor,
+                     MultipartFile file);
 }

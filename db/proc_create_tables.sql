@@ -318,9 +318,6 @@ CREATE TABLE `cities` (
   DEFAULT CHARSET = utf8;
 
 
-
-
-
 CREATE TABLE `request_for_ranking` (
   `ranking_id` INT(10) UNSIGNED NOT NULL  AUTO_INCREMENT
   COMMENT '排名ID',
@@ -332,14 +329,41 @@ CREATE TABLE `request_for_ranking` (
   DEFAULT CHARSET = utf8;
 
 CREATE TABLE IF NOT EXISTS `sms_verify` (
-  `sms_id`     BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  `sms_id`      BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
 
-  `phone` BIGINT UNSIGNED   NOT NULL
+  `phone`       BIGINT UNSIGNED                     NOT NULL
   COMMENT '手机',
-  `code`  INT UNSIGNED NOT NULL
+  `code`        INT UNSIGNED                        NOT NULL
   COMMENT '验证码',
   `create_date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
   COMMENT '时间'
+
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
+
+
+CREATE TABLE IF NOT EXISTS `question` (
+  `question_id`        BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+
+  `question_content`   VARCHAR(200)                        NOT NULL
+  COMMENT '问题内容',
+  `question_vioce_url` VARCHAR(100)                        NOT NULL
+  COMMENT '问题语音',
+  `requestor_id`       BIGINT UNSIGNED                     NOT NULL
+  COMMENT '提问者',
+  `response_id`        BIGINT UNSIGNED                     NOT NULL
+  COMMENT '回答者',
+  `reponse_url`        VARCHAR(100)                        NOT NULL
+  COMMENT '回答语音',
+  `request_amount`     INTEGER                             NOT NULL
+  COMMENT '钱数',
+  `question_type` TINYINT(4) NOT NULL
+    COMMENT '问题类型：1=悬赏; 2=定向',
+  `create_date`        TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
+  COMMENT '提问时间',
+  `reponse_date`       TIMESTAMP
+  COMMENT '回复时间'
 
 )
   ENGINE = InnoDB
