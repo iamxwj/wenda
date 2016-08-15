@@ -1,21 +1,49 @@
 package com.wd.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.wd.data.Message;
+import com.wd.domain.RewardInfo;
 import com.wd.service.RewardInfoService;
 
-/**
- * QuestionController
- * 
- * @author xwj
- * @version 创建时间：2016年8月11日
+
+/**   
+*    
+* 项目名称：wenda   
+* 类名称：RewardInfoController   
+* 创建人：张华   
+* 创建时间：2016年8月15日 上午10:50:30      
+* @version    
+*    
 */
-@RequestMapping("/ web/question")
+@RequestMapping("/web/reward")
 public class RewardInfoController {
 	@Autowired
 	private RewardInfoService rewardInfoService;
 	
+	
+	/**      
+	 * 方法描述：发布悬赏
+	 * 备注：
+	 */
+	@RequestMapping("/addReward")
+	@ResponseBody
+	public Message addReward(RewardInfo rewardInfo){
+		Message message = new Message();
+		message.setCount("发布悬赏失败！");
+		message.setResult(false);
+		message.setCore(null);
+		RewardInfo newReward = rewardInfoService.addReward(rewardInfo);
+		if(newReward!=null){
+			message.setCount("发布悬赏成功！");
+			message.setResult(true);
+			message.setCore(newReward);
+		}
+		return message;
+	}
 	/**      
 	 * 方法描述：分页查询所有悬赏
 	 * 备注：

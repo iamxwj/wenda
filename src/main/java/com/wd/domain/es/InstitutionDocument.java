@@ -25,6 +25,8 @@ public class InstitutionDocument {
     @Field(type = String, store = true, analyzer = "ik", searchAnalyzer = "ik")
     private List<String> institutionMemberNames;
 
+    
+        
     public InstitutionDocument() {
     }
 
