@@ -27,13 +27,14 @@ public class TestDao {
 	UserInfoService userInfoService=null;
 	ApplicationContext ioc=null;
 	{
-		ioc=new ClassPathXmlApplicationContext("spring-context.xml");
+		ioc=new ClassPathXmlApplicationContext("spring-context.xml","spring-mvc.xml");
 		//userInfoService = ioc.getBean(UserInfoService.class);
 		questionService= ioc.getBean(QuestionService.class);
 	}
 	
 	@Test
 	public void test() {
+		System.out.println(questionService);
 		//ResponseData modifyEmail = userInfoService.modifyEmail(new UserLoginInfo());
 		//Page<QuestionEntity> questionPage = questionService.getQuestionPage(1,3);
 		//int totalPages = questionPage.getTotalPages();

@@ -15,4 +15,13 @@
     <!-- DAO配置 -->
     <context:property-placeholder location="classpath:spring-dao.properties" system-properties-mode="OVERRIDE" ignore-unresolvable="true" />
     <import resource="classpath:spring-dao.xml" />
+    <elasticsearch:transport-client id="client" cluster-nodes="123.56.184.92:9301"/>
+
+    <!--<elasticsearch:transport-client id="client" cluster-name="elasticsearch" cluster-nodes="127.0.0.1:9300"/>-->
+    <bean name="elasticsearchTemplate" class="org.springframework.data.elasticsearch.core.ElasticsearchTemplate">
+        <constructor-arg name="client" ref="client"/>
+    </bean>
+
+
+    <elasticsearch:repositories base-package="com.djt.repositories"/>
 </beans>

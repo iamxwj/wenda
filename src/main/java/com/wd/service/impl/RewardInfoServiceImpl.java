@@ -1,9 +1,9 @@
-/*
- * @(#)CaptchaServiceImpl.java, 2015/11/9.
+
+ /* @(#)CaptchaServiceImpl.java, 2015/11/9.
  *
  * Copyright 2015 Alibaodu, Inc. All rights reserved.
- * ALIBAODU PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- */
+ * ALIBAODU PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.*/
+ 
 
 package com.wd.service.impl;
 
@@ -17,7 +17,7 @@ import com.wd.dao.RewardInfoDao;
 import com.wd.domain.RewardInfo;
 import com.wd.service.RewardInfoService;
 
-/**
+/*
  * CaptchaServiceImpl
  *
  * @author HOU Zhipeng
@@ -30,7 +30,7 @@ public class RewardInfoServiceImpl implements RewardInfoService {
 	@Autowired
     private RewardInfoDao RewardInfodao;
 	
-	/**      
+	/*    
 	 * 方法描述：分页查询所有悬赏信息
 	 * 备注：
 	 */
@@ -41,7 +41,7 @@ public class RewardInfoServiceImpl implements RewardInfoService {
 		return pageReward;
 	}
 	
-	/**      
+	/*     
 	 * 方法描述：添加悬赏信息
 	 * 备注：
 	 */

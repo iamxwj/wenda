@@ -10,7 +10,9 @@ package com.wd.controller;
 import com.wd.data.ResponseData;
 import com.wd.data.UserLoginInfo;
 import com.wd.data.UserRegisterInfo;
+import com.wd.domain.SmsVerifyEntity;
 import com.wd.service.CaptchaService;
+import com.wd.service.SmsVerifyService;
 import com.wd.service.UserInfoService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,16 +36,21 @@ public class UserController {
 
     @Autowired
     private UserInfoService userInfoService;
-
+    
     @Autowired
-    private CaptchaService captchaService;
+    private SmsVerifyService smsVerifyService;
+    
+   /* @Autowired
+    private CaptchaService captchaService;*/
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
     public ResponseData login(HttpServletRequest request, HttpServletResponse response, @RequestBody UserLoginInfo userLoginInfo) {
-        return userInfoService.validateUserPass(request, response, userLoginInfo);
+    	if(userLoginInfo==null){
+    		return new ResponseData(false, "请输入相应的信息", null);
+    	}
+    	return userInfoService.validateUserPass(request, response, userLoginInfo);
     }
-
 
     /**
      * 注册请求
@@ -53,18 +60,22 @@ public class UserController {
      */
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseData register(HttpServletRequest request, @RequestBody UserRegisterInfo info) {
+    public ResponseData register(@RequestBody SmsVerifyEntity smsVerifyEntity,HttpServletRequest request, @RequestBody UserRegisterInfo info) {
         logger.info("用户注册");
         String sessionId = request.getSession().getId();
         // 验证输入的验证码
-        boolean catpchaResult = captchaService.validateCaptcha(info.getCaptchaStr(), request);
+        /*boolean catpchaResult = captchaService.validateCaptcha(info.getCaptchaStr(), request);
 
         if(!catpchaResult) {
             ResponseData status = new ResponseData(false, ResponseData.CAPTCHA_ERROR, null);
             return status;
-        }
+        }*/
 
         /* 短信验证码验证未添加 */
+        ResponseData verifySms = smsVerifyService.verifySms(smsVerifyEntity.getSmsId(),smsVerifyEntity.getCode() , smsVerifyEntity.getPhone());
+        if(!verifySms.isSuccess()){
+        	return verifySms;
+        }
         logger.info("开始校验数据");
         ResponseData status = userInfoService.addUser(request, info);
         return status;
@@ -76,7 +87,7 @@ public class UserController {
      * @param response
      * @throws IOException
      */
-    @RequestMapping(value = "/captcha", method = RequestMethod.GET)
+   /* @RequestMapping(value = "/captcha", method = RequestMethod.GET)
     public void getCaptcha(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("image/jpeg");
         response.setHeader("Pragma", "No-cache");
@@ -84,7 +95,7 @@ public class UserController {
         response.setDateHeader("Expire", 0);
 
         captchaService.setCaptcha(request, response);
-    }
+    }*/
 
     /**
      * 用户名是否存在
@@ -126,13 +137,13 @@ public class UserController {
      * @param request
      * @return
      */
-    @RequestMapping("/validate_captcha")
+   /* @RequestMapping("/validate_captcha")
     @ResponseBody
     public boolean validateCaptcha(@RequestParam("captcha_str") String captchaStr, HttpServletRequest request) {
         boolean result = captchaService.validateCaptcha(captchaStr, request);
 
         return result;
-    }
+    }*/
 
 
     /**
@@ -182,4 +193,5 @@ public class UserController {
     ResponseData modifyPasswordByVerify(@RequestBody UserLoginInfo userLoginInfo){
         return userInfoService.modifyPasswordByVerify(userLoginInfo);
     }
+    
 }

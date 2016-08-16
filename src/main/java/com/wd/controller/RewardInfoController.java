@@ -2,6 +2,7 @@ package com.wd.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -10,7 +11,7 @@ import com.wd.domain.RewardInfo;
 import com.wd.service.RewardInfoService;
 
 
-/**   
+/*  
 *    
 * 项目名称：wenda   
 * 类名称：RewardInfoController   
@@ -19,6 +20,7 @@ import com.wd.service.RewardInfoService;
 * @version    
 *    
 */
+@Controller
 @RequestMapping("/web/reward")
 public class RewardInfoController {
 	@Autowired

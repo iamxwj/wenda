@@ -13,14 +13,14 @@ import com.qiniu.util.StringUtils;
  * Created by Zhipeng on 2016/6/6.
  */
 public class QiNiuUtil {
-    public static final String suffix = "_商业计划书";
+    public static final String suffix = "_voice";
     //设置好账号的ACCESS_KEY和SECRET_KEY
     public static final String ACCESS_KEY = "ATy7CWhN9_Tj2vNt65ZkA-waP7ELE_D9oozjUrSe";
     public static final String SECRET_KEY = "WHm_JTt07az6NMoJJmJrUBp57OXoTwhgcoDUuNXQ";
     //要上传的空间
-    public static final String bucketname = "alibaodutech";
+    public static final String bucketname = "baoduwenda";
 
-    public static final String URL = "http://o8dpkkbv5.bkt.clouddn.com/";
+    public static final String URL = "http://obw7tlbfh.bkt.clouddn.com/";
 
     //密钥配置
     public static final Auth auth = Auth.create(ACCESS_KEY, SECRET_KEY);
@@ -29,17 +29,22 @@ public class QiNiuUtil {
     //创建上传对象
     public static final UploadManager uploadManager = new UploadManager();
 
-    public static String getFileName(Long userId, String fileSuffix) {
-        return userId.toString() + suffix + fileSuffix;
+    public static String getFileName(Long userId, String fileSuffix, boolean requestor) {
+        if(requestor){
+            return userId.toString() +"_sender"+ suffix + fileSuffix;
+        }else {
+            return userId.toString() +"_receiver" + suffix + fileSuffix;
+        }
+
     }
 
     public static String getUpToken() {
         return auth.uploadToken(bucketname);
     }
 
-    public static String uploadFile(String filePath, Long userId, String fileSuffix) throws QiniuException {
+    public static String uploadFile(String filePath, Long question, String fileSuffix, boolean requestor) throws QiniuException {
         //调用put方法上传
-        Response res = uploadManager.put(filePath, getFileName(userId, fileSuffix), getUpToken());
+        Response res = uploadManager.put(filePath, getFileName(question, fileSuffix, requestor), getUpToken());
         QiNiuResponseInfo qiNiuResponseInfo = getResponseInfo(res.bodyString());
         if (qiNiuResponseInfo == null)
             return null;
@@ -62,9 +67,9 @@ public class QiNiuUtil {
         return qiNiuResponseInfo;
     }
 
-    public static String privateDownload(Long userId, String suffix) {
+    public static String privateDownload(Long userId, String suffix,boolean requestor) {
         //调用privateDownloadUrl方法生成下载链接,第二个参数可以设置Token的过期时间
-       return privateDownload(getFileName(userId, suffix));
+       return privateDownload(getFileName(userId, suffix,requestor));
 
     }
 
@@ -73,8 +78,8 @@ public class QiNiuUtil {
         return downloadRUL;
     }
 
-    public static boolean deletePrevious(Long userId, String suffix) {
-        return deletePrevious(getFileName(userId, suffix));
+    public static boolean deletePrevious(Long userId, String suffix, boolean requestor) {
+        return deletePrevious(getFileName(userId, suffix, requestor));
     }
 
     public static boolean deletePrevious(String fileName) {

@@ -143,4 +143,11 @@ public class InvestorController {
         logger.debug("investorId = " + investorId);
         return investorService.getInvestorLevel(investorId);
     }
+
+
+    @RequestMapping(value = "/list_by_tag", method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseData getInvestorListByTag(@RequestParam("tag") String tag) {
+        return investorService.getInvestorListByTag(tag);
+    }
 }
