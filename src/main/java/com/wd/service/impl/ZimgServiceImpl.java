@@ -122,7 +122,7 @@ public class ZimgServiceImpl implements ZimgService {
             String suffix = QiNiuUtil.getFileSuffix(fileName);
 //            oldName = p.getBpPath();
 //            String newFileName = QiNiuUtil.getFileName(userId, suffix);
-            newFileName = QiNiuUtil.uploadFile(tmpFileName, questionId, suffix);
+            newFileName = QiNiuUtil.uploadFile(tmpFileName, questionId, suffix, requestor);
         } catch (QiniuException e) {
             e.printStackTrace();
         } catch (Exception e) {
