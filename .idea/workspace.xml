@@ -2,27 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="71bf45f6-d81c-4411-86d0-688d071ca416" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/wd/domain/Question.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wd/controller/InstitutionController.java" afterPath="$PROJECT_DIR$/src/main/java/com/wd/controller/InstitutionController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wd/controller/InvestorController.java" afterPath="$PROJECT_DIR$/src/main/java/com/wd/controller/InvestorController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wd/controller/RewardInfoController.java" afterPath="$PROJECT_DIR$/src/main/java/com/wd/controller/RewardInfoController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wd/dao/RewardInfoDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/wd/dao/RewardInfoDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wd/domain/RewardInfo.java" afterPath="$PROJECT_DIR$/src/main/java/com/wd/domain/RewardInfo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wd/domain/es/InstitutionDocument.java" afterPath="$PROJECT_DIR$/src/main/java/com/wd/domain/es/InstitutionDocument.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wd/domain/es/InvestorDocument.java" afterPath="$PROJECT_DIR$/src/main/java/com/wd/domain/es/InvestorDocument.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wd/repositories/InstitutionRepository.java" afterPath="$PROJECT_DIR$/src/main/java/com/wd/repositories/InstitutionRepository.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wd/repositories/InvestorRepository.java" afterPath="$PROJECT_DIR$/src/main/java/com/wd/repositories/InvestorRepository.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wd/service/InstitutionService.java" afterPath="$PROJECT_DIR$/src/main/java/com/wd/service/InstitutionService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wd/service/InvestorService.java" afterPath="$PROJECT_DIR$/src/main/java/com/wd/service/InvestorService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wd/service/RewardInfoService.java" afterPath="$PROJECT_DIR$/src/main/java/com/wd/service/RewardInfoService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wd/service/impl/InstitutionServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/wd/service/impl/InstitutionServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wd/service/impl/InvestorServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/wd/service/impl/InvestorServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wd/service/impl/RewardInfoServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/wd/service/impl/RewardInfoServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wd/service/impl/ZimgServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/wd/service/impl/ZimgServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wd/test/TestDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/wd/test/TestDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wd/test/TestQuestionController.java" afterPath="$PROJECT_DIR$/src/main/java/com/wd/test/TestQuestionController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wd/utils/EntityDocumentConvertor.java" afterPath="$PROJECT_DIR$/src/main/java/com/wd/utils/EntityDocumentConvertor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/spring-context.xml" afterPath="$PROJECT_DIR$/src/main/resources/spring-context.xml" />
     </list>
     <list id="1b817b90-5039-45c4-9056-5e378d92435a" name="New changelist" comment="" />
     <ignored path="wenda.iws" />
@@ -842,7 +823,7 @@
       <workItem from="1470999619177" duration="6538000" />
       <workItem from="1471154336488" duration="10362000" />
       <workItem from="1471258077592" duration="4770000" />
-      <workItem from="1471312092747" duration="1984000" />
+      <workItem from="1471312092747" duration="2636000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1469691609457</created>
@@ -898,11 +879,17 @@
       <option name="project" value="LOCAL" />
       <updated>1471258136797</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="注释">
+      <created>1471320597875</created>
+      <option name="number" value="00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1471320597875</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40021000" />
+    <option name="totallyTimeSpent" value="40673000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -910,6 +897,7 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21458773" sideWeight="0.5083333" order="7" side_tool="true" content_ui="tabs" />
@@ -930,7 +918,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.6565547" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -951,7 +938,8 @@
     <MESSAGE value="init" />
     <MESSAGE value="创建省份等" />
     <MESSAGE value="支付" />
-    <option name="LAST_COMMIT_MESSAGE" value="支付" />
+    <MESSAGE value="注释" />
+    <option name="LAST_COMMIT_MESSAGE" value="注释" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
