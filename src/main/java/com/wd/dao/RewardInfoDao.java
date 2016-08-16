@@ -29,4 +29,5 @@ public interface RewardInfoDao extends PagingAndSortingRepository<RewardInfo, Lo
      * @return
      */
 	
+	
 }

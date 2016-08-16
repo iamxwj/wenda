@@ -7,26 +7,31 @@
 
 package com.wd.service.impl;
 
-import com.wd.dao.*;
-import com.wd.data.*;
-import com.wd.data.institution.*;
-import com.wd.data.investor.InvestorShortList;
-import com.wd.domain.*;
-import com.wd.domain.es.InstitutionDocument;
-import com.wd.repositories.InstitutionRepository;
-import com.wd.service.InstitutionService;
-import com.wd.utils.*;
-import com.qiniu.util.StringUtils;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.Timestamp;
-import java.util.*;
+import com.qiniu.util.StringUtils;
+import com.wd.dao.InstitutionInfoDao;
+import com.wd.repositories.InstitutionRepository;
+import com.wd.data.ResponseData;
+import com.wd.data.institution.InstitutionBasicInfo;
+import com.wd.data.institution.InstitutionIdName;
+import com.wd.data.institution.InstitutionInfo;
+import com.wd.data.investor.InvestorShortList;
+import com.wd.domain.InstitutionInfoEntity;
+import com.wd.domain.InvestorInfoEntity;
+import com.wd.domain.es.InstitutionDocument;
+import com.wd.service.InstitutionService;
+import com.wd.utils.EntityDocumentConvertor;
 
 /**
  * InstitutionServiceImpl

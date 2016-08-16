@@ -9,10 +9,10 @@ package com.wd.service.impl;
 
 import com.wd.common.UserType;
 import com.wd.dao.*;
+import com.wd.repositories.InvestorRepository;
 import com.wd.data.*;
 import com.wd.data.investor.*;
 import com.wd.domain.*;
-import com.wd.repositories.InvestorRepository;
 import com.wd.service.InvestorService;
 import com.wd.utils.*;
 import com.qiniu.util.StringUtils;

@@ -12,7 +12,7 @@ import static org.springframework.data.elasticsearch.annotations.FieldType.Strin
  * @author Zhipeng
  * @date 2016/6/13.
  */
-@Document(indexName = "djt", type = "institution")
+@Document(indexName = "wd", type = "institution")
 public class InstitutionDocument {
     @Field(analyzer = "ik", searchAnalyzer = "ik")
     private String institutionName;
@@ -28,6 +28,7 @@ public class InstitutionDocument {
     
         
     public InstitutionDocument() {
+    	
     }
 
     public InstitutionDocument(String institutionName, Long institutionId) {

@@ -7,9 +7,9 @@ package com.wd.domain.es;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
-//import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Document;
 
-@Document(indexName = "djt", type = "investor")
+@Document(indexName = "wd", type = "investor")
 public class InvestorDocument {
     @Id
     private Long investorId;
