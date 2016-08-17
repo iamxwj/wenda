@@ -70,6 +70,24 @@ public class Question implements java.io.Serializable {
 	
 	@Column(name = "response_date")
 	private Date responseDate;
+	
+	@Column(name = "question_content")
+	private String questionContent;
+	
+	@Column(name = "question_content_vioce")
+	private String questionContentVoice;
+	
+	@Column(name = "question_type")
+	private String questionType;
+	
+	@Column(name = "reward_id")
+	private Long rewardId;
+	
+	@Column(name = "question_state")
+	private Byte questionState;
+	
+	@Column(name = "request_date")
+	private Date requestDate;
 
 	public Long getQuestionId() {
 		return questionId;
@@ -207,6 +225,54 @@ public class Question implements java.io.Serializable {
 		this.responseDate = responseDate;
 	}
 
+	public String getQuestionContent() {
+		return questionContent;
+	}
+
+	public void setQuestionContent(String questionContent) {
+		this.questionContent = questionContent;
+	}
+
+	public String getQuestionContentVoice() {
+		return questionContentVoice;
+	}
+
+	public void setQuestionContentVoice(String questionContentVoice) {
+		this.questionContentVoice = questionContentVoice;
+	}
+
+	public String getQuestionType() {
+		return questionType;
+	}
+
+	public void setQuestionType(String questionType) {
+		this.questionType = questionType;
+	}
+
+	public Long getRewardId() {
+		return rewardId;
+	}
+
+	public void setRewardId(Long rewardId) {
+		this.rewardId = rewardId;
+	}
+
+	public Byte getQuestionState() {
+		return questionState;
+	}
+
+	public void setQuestionState(Byte questionState) {
+		this.questionState = questionState;
+	}
+
+	public Date getRequestDate() {
+		return requestDate;
+	}
+
+	public void setRequestDate(Date requestDate) {
+		this.requestDate = requestDate;
+	}
+
 	@Override
 	public String toString() {
 		return "Question [questionId=" + questionId + ", requestorName=" + requestorName + ", requestorImg="
@@ -215,8 +281,10 @@ public class Question implements java.io.Serializable {
 				+ numberListen + ", questionLike=" + questionLike + ", requestorId=" + requestorId + ", responserImg="
 				+ responserImg + ", responserName=" + responserName + ", responserListenNumber=" + responserListenNumber
 				+ ", responseInstitution=" + responseInstitution + ", responseLevel=" + responseLevel + ", responseId="
-				+ responseId + ", responseDate=" + responseDate + "]";
+				+ responseId + ", responseDate=" + responseDate + ", questionContent=" + questionContent
+				+ ", questionContentVoice=" + questionContentVoice + ", questionType=" + questionType + ", rewardId="
+				+ rewardId + ", questionState=" + questionState + ", requestDate=" + requestDate + "]";
 	}
-	
+
 	
 }
