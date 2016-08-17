@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,7 +20,7 @@ import com.wd.service.QuestionService;
  * @version 创建时间：2016年8月12日
 */
 @Controller
-@RequestMapping("/ web/question")
+@RequestMapping("/web/question")
 public class QuestionController {
 	@Autowired
 	private QuestionService questionService;
@@ -27,8 +28,8 @@ public class QuestionController {
 	//用于获取好问分页
 	@RequestMapping("/get/{questionType}/{page}/{size}")
 	@ResponseBody
-	public ResponseData getQuestionPage(@RequestParam(value="questionType",required=false) Byte questionType,
-			@RequestParam(value="page",required=false) Integer page,@RequestParam("size") int size
+	public ResponseData getQuestionPage(@PathVariable(value="questionType") Byte questionType,
+			@PathVariable(value="page") Integer page,@PathVariable(value="size") int size
 			){
 		if(page==null||page<=0){
 			page=1;
@@ -38,10 +39,10 @@ public class QuestionController {
 	}
 	
 	//用于搜索好问分页
-	@RequestMapping("/get/{content}/{page}/{size}")
+	@RequestMapping("/search/{content}/{page}/{size}")
 	@ResponseBody
-	public ResponseData searchQuestionPage(@RequestParam(value="content",required=false) String content,
-			@RequestParam(value="page",required=false) Integer page,@RequestParam("size") int size
+	public ResponseData searchQuestionPage(@PathVariable(value="content") String content,
+			@PathVariable(value="page") Integer page,@PathVariable("size") int size
 			){
 		if(page==null||page<=0){
 			page=1;
