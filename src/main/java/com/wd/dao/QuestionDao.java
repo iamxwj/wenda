@@ -18,4 +18,19 @@ import com.wd.domain.Question;
 public interface QuestionDao extends PagingAndSortingRepository<Question, Long> {
 	
 	public Page<Question> findByQuestionType(String questionType, Pageable pageRequest);
+	/**
+	 * 用于查询我的所有悬赏问题
+	 * @param requestorId
+	 * @param pageRequest
+	 * @return
+	 */
+	public Page<Question> findByRequestorIdAndResponseLevelIsNull(Long requestorId,Pageable pageRequest);
+	
+	/**
+	 * 用于查询我的所有的定向问题
+	 * @param requestorId
+	 * @param pageRequest
+	 * @return
+	 */
+	public Page<Question> findByRequestorIdAndResponseLevelNotNull(Long requestorId,Pageable pageRequest);
 }
