@@ -42,6 +42,12 @@ public class InvestorInfoEntity {
     private String mobilePortrait;
     private String investorPhoto;
     private Byte levelType;// 人物职位等级
+    
+    
+    private int answerNumber;
+    
+    private int listened;
+    
 
     // 投资项目列表
 //    private List<InvestorCaseEntity> investorCaseEntityList;
@@ -80,6 +86,8 @@ public class InvestorInfoEntity {
         mobilePortrait = "http://123.56.184.92:4869/9d43184eefdf27ed129bfeff6a5b8c99?p=0";
         investorPhoto = "";
         levelType = (byte)1;
+        answerNumber = 0;
+        listened = 0;
     }
 
     @Id
@@ -366,4 +374,23 @@ public class InvestorInfoEntity {
     public int hashCode() {
         return getInvestorId().hashCode();
     }
+
+    @Column(name = "answer_number")
+	public int getAnswerNumber() {
+		return answerNumber;
+	}
+
+	public void setAnswerNumber(int answerNumber) {
+		this.answerNumber = answerNumber;
+	}
+	@Column
+	public int getListened() {
+		return listened;
+	}
+
+	public void setListened(int listened) {
+		this.listened = listened;
+	}
+    
+    
 }

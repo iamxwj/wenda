@@ -14,13 +14,12 @@ import com.wd.domain.Question;
 *    
 */
 public interface QuestionService {
-	/**
-	 * 用于获取好问分页
-	 * @param questionType
-	 * @param page
-	 * @param size
-	 * @return
-	 */
+	
+	
+	/**      
+	* 方法描述：根据问题类型分页查询问题信息
+	* 备注：
+	*/
 	public ResponseData getQuestionPage(String questionType,int page, int pagesize);
 	/**      
 	* 方法描述：添加问题/发布悬赏
@@ -28,6 +27,13 @@ public interface QuestionService {
 	*/
 	public ResponseData addQuestion(Question question);
 	
+	
+	
+	/**      
+	* 方法描述：根据问题ID获得问题
+	* 备注：
+	*/
+	public ResponseData findByQuestionId(Long questionId);
 	
 	
 //	/**
