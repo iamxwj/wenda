@@ -73,7 +73,7 @@ public class UserController {
 
         /* 短信验证码验证未添加 */
         ResponseData verifySms = smsVerifyService.verifySms(smsVerifyEntity.getSmsId(),smsVerifyEntity.getCode() , smsVerifyEntity.getPhone());
-        if(!verifySms.isSuccess()){
+        if(!verifySms.isResult()){
         	return verifySms;
         }
         logger.info("开始校验数据");

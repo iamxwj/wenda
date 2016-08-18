@@ -22,7 +22,6 @@ public class Question implements java.io.Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long questionId;
 	
-	
 	@Column(name = "requestor_name")
 	private String requestorName;
 	
@@ -69,25 +68,28 @@ public class Question implements java.io.Serializable {
 	private Long responseId;
 	
 	@Column(name = "response_date")
-	private Date responseDate;
+	private String responseDate;
 	
 	@Column(name = "question_content")
 	private String questionContent;
 	
-	@Column(name = "question_content_vioce")
+	@Column(name = "question_content_voice")
 	private String questionContentVoice;
 	
 	@Column(name = "question_type")
 	private String questionType;
 	
-	@Column(name = "reward_id")
-	private Long rewardId;
+	@Column
+	private int money;
 	
 	@Column(name = "question_state")
 	private Byte questionState;
 	
 	@Column(name = "request_date")
-	private Date requestDate;
+	private String requestDate;
+	
+	@Column(name = "voice_note")
+	private String voiceNote;
 
 	public Long getQuestionId() {
 		return questionId;
@@ -217,11 +219,11 @@ public class Question implements java.io.Serializable {
 		this.responseId = responseId;
 	}
 
-	public Date getResponseDate() {
+	public String getResponseDate() {
 		return responseDate;
 	}
 
-	public void setResponseDate(Date responseDate) {
+	public void setResponseDate(String responseDate) {
 		this.responseDate = responseDate;
 	}
 
@@ -249,12 +251,12 @@ public class Question implements java.io.Serializable {
 		this.questionType = questionType;
 	}
 
-	public Long getRewardId() {
-		return rewardId;
+	public int getMoney() {
+		return money;
 	}
 
-	public void setRewardId(Long rewardId) {
-		this.rewardId = rewardId;
+	public void setMoney(int money) {
+		this.money = money;
 	}
 
 	public Byte getQuestionState() {
@@ -265,12 +267,20 @@ public class Question implements java.io.Serializable {
 		this.questionState = questionState;
 	}
 
-	public Date getRequestDate() {
+	public String getRequestDate() {
 		return requestDate;
 	}
 
-	public void setRequestDate(Date requestDate) {
+	public void setRequestDate(String requestDate) {
 		this.requestDate = requestDate;
+	}
+
+	public String getVoiceNote() {
+		return voiceNote;
+	}
+
+	public void setVoiceNote(String voiceNote) {
+		this.voiceNote = voiceNote;
 	}
 
 	@Override
@@ -282,9 +292,10 @@ public class Question implements java.io.Serializable {
 				+ responserImg + ", responserName=" + responserName + ", responserListenNumber=" + responserListenNumber
 				+ ", responseInstitution=" + responseInstitution + ", responseLevel=" + responseLevel + ", responseId="
 				+ responseId + ", responseDate=" + responseDate + ", questionContent=" + questionContent
-				+ ", questionContentVoice=" + questionContentVoice + ", questionType=" + questionType + ", rewardId="
-				+ rewardId + ", questionState=" + questionState + ", requestDate=" + requestDate + "]";
+				+ ", questionContentVoice=" + questionContentVoice + ", questionType=" + questionType + ", money="
+				+ money + ", questionState=" + questionState + ", requestDate=" + requestDate + ", voiceNote="
+				+ voiceNote + "]";
 	}
 
-	
+
 }

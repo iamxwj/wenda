@@ -3,21 +3,19 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
-import com.wd.domain.QuestionEntity;
+import com.wd.domain.Question;
 
-/**
- * QuestionDao
- * 
- * @author xwj
- * @version 创建时间：2016年8月11日
+
+/**   
+*    
+* 项目名称：wenda   
+* 类名称：QuestionDao   
+* 创建人：张华   
+* 创建时间：2016年8月17日 上午11:31:48      
+* @version    
+*    
 */
-public interface QuestionDao extends PagingAndSortingRepository<QuestionEntity, Long> {
-	//查询所有的问题信息
-	/*@Query("select count(question) from QuestionEntity question")
-	long getTotalElements();
+public interface QuestionDao extends PagingAndSortingRepository<Question, Long> {
 	
-	@Query("select question")
-	List<QuestionEntity> getQuestionList();
-	*/
-	Page<QuestionEntity> findByQuestionType(Byte questionType,Pageable pageable);
+	public Page<Question> findByQuestionType(String questionType, Pageable pageRequest);
 }

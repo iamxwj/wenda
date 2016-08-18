@@ -32,46 +32,36 @@ public class ResponseData {
 
     public static String INVESTOR_PHOTO_INVALID = "未上传投资人头像";
 
-    private boolean success;
+    private boolean result;
     private String message;
     private Object obj;
+	public boolean isResult() {
+		return result;
+	}
+	public void setResult(boolean result) {
+		this.result = result;
+	}
+	public String getMessage() {
+		return message;
+	}
+	public void setMessage(String message) {
+		this.message = message;
+	}
+	public Object getObj() {
+		return obj;
+	}
+	public void setObj(Object obj) {
+		this.obj = obj;
+	}
+	@Override
+	public String toString() {
+		return "ResponseData [result=" + result + ", message=" + message + ", obj=" + obj + "]";
+	}
+	public ResponseData(boolean result, String message, Object obj) {
+		super();
+		this.result = result;
+		this.message = message;
+		this.obj = obj;
+	}
 
-    public ResponseData(boolean success, String message, Object obj) {
-        this.success = success;
-        this.message = message;
-        this.obj = obj;
-    }
-
-    public boolean isSuccess() {
-        return success;
-    }
-
-    public void setSuccess(boolean success) {
-        this.success = success;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public Object getObj() {
-        return obj;
-    }
-
-    public void setObj(Object obj) {
-        this.obj = obj;
-    }
-
-    @Override
-    public String toString() {
-        return "ResponseData{" +
-                "success=" + success +
-                ", message='" + message + '\'' +
-                ", obj=" + obj +
-                '}';
-    }
 }

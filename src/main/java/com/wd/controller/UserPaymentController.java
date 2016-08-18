@@ -134,17 +134,17 @@ public class UserPaymentController {
     @ResponseBody
     public ResponseData weChatPayByMobile(@RequestBody SubmitOrderInfo submitOrderInfo, HttpServletRequest request) {
         ResponseData responseData = detailService.saveRecord(submitOrderInfo);
-        if (responseData.isSuccess()) {
+        if (responseData.isResult()) {
             try {
                 String prepayId = WeChatUtil.getprepayId(WeChatUtil.getBody(submitOrderInfo), ((Long) responseData.getObj()).toString(), (int) (long) submitOrderInfo.getAmount(), request.getRemoteAddr(), "APP");
                 WeChatPayDirectPay weChatPayDirectPay = WeChatUtil.getMobileRequest(prepayId);
-                return new ResponseData(responseData.isSuccess(), "创建订单成功", weChatPayDirectPay);
+                return new ResponseData(responseData.isResult(), "创建订单成功", weChatPayDirectPay);
             } catch (UnknowOperationTypeException e) {
                 return new ResponseData(false, e.getMessage(), null);
             }
 
         } else {
-            return new ResponseData(responseData.isSuccess(), responseData.getMessage(), responseData.getObj());
+            return new ResponseData(responseData.isResult(), responseData.getMessage(), responseData.getObj());
         }
     }
 
