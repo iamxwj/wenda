@@ -300,4 +300,27 @@ public class InstitutionInfoEntity {
     public void setUpdateTime(Timestamp updateTime) {
         this.updateTime = updateTime;
     }
+
+    private int answerNumber;
+    
+    private int listened;
+
+    @Column(name = "answer_number")
+	public int getAnswerNumber() {
+		return answerNumber;
+	}
+
+	public void setAnswerNumber(int answerNumber) {
+		this.answerNumber = answerNumber;
+	}
+	@Column
+	public int getListened() {
+		return listened;
+	}
+
+	public void setListened(int listened) {
+		this.listened = listened;
+	}
+    
+    
 }

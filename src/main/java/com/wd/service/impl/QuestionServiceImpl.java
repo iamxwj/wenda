@@ -146,5 +146,21 @@ public class QuestionServiceImpl implements QuestionService {
 		}
 		return responseData;
 	}
+
+	/**      
+	* 方法描述：根据问题ID获得问题
+	* 备注：
+	*/
+	@Override
+	public ResponseData findByQuestionId(Long questionId) {
+		ResponseData responseData = new ResponseData(false, "查询失败！", null);
+		Question newquestion = questionDao.findByQuestionId(questionId);
+		if(newquestion!=null){
+			responseData.setResult(true);
+			responseData.setMessage("发布成功！");
+			responseData.setObj(newquestion);
+		}
+		return responseData;
+	}
 	
 }

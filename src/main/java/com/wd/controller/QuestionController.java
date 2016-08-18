@@ -82,11 +82,20 @@ public class QuestionController {
 	*/
 	@RequestMapping("/pageQuestionByType")
 	@ResponseBody
-	public ResponseData pageQuestionByType(@RequestBody Map map){
-		String questionType = (String) map.get("questionType");
-		int page = (int) map.get("page");
-		int pagesize = (int) map.get("pagesize");
+	public ResponseData pageQuestionByType(String questionType,int page,int pagesize){
 		ResponseData responseData = questionService.getQuestionPage(questionType, page, pagesize);
+		return responseData;
+	}
+	
+	/**      
+	 * 方法描述：根据问题ID获得问题
+	 * 备注：
+	 */
+	@RequestMapping("/findByQuestionId")
+	@ResponseBody
+	public ResponseData findByQuestionId(Long questionId,Long requestorId,Long responseId){
+		questionId = (long) 1;
+		ResponseData responseData = questionService.findByQuestionId(questionId);
 		return responseData;
 	}
 	

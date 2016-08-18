@@ -8,6 +8,8 @@
 package com.wd.dao;
 
 import com.wd.domain.InvestorInfoEntity;
+import com.wd.domain.Question;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -48,4 +50,11 @@ public interface InvestorInfoDao extends JpaSpecificationExecutor<InvestorInfoEn
 
 
     Page<InvestorInfoEntity> findByLevelTypeAndFirstFieldsLike(Byte position, String firstField, Pageable pageRequest);
+    
+    
+    
+    public Page<InvestorInfoEntity> findByLevelType(Byte levelType, Pageable pageable);
+    
+    @Query("select investor from InvestorInfoEntity investor order by listened desc")
+    public Page<InvestorInfoEntity> findByHot(Pageable pageable);
 }

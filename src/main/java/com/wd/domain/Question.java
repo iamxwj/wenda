@@ -64,14 +64,23 @@ public class Question implements java.io.Serializable {
 	@Column(name = "response_level")
 	private Byte responseLevel;
 	
+	@Column(name = "requestor_level")
+	private Byte requestorLevel;
+	
 	@Column(name = "response_id")
 	private Long responseId;
 	
 	@Column(name = "response_date")
-	private String responseDate;
+	private Date responseDate;
 	
 	@Column(name = "question_content")
 	private String questionContent;
+	
+	@Column(name = "answer_content")
+	private String answerContent;
+	
+	@Column(name = "answer_time")
+	private int answerTime;
 	
 	@Column(name = "question_content_voice")
 	private String questionContentVoice;
@@ -86,7 +95,7 @@ public class Question implements java.io.Serializable {
 	private Byte questionState;
 	
 	@Column(name = "request_date")
-	private String requestDate;
+	private Date requestDate;
 	
 	@Column(name = "voice_note")
 	private String voiceNote;
@@ -219,11 +228,11 @@ public class Question implements java.io.Serializable {
 		this.responseId = responseId;
 	}
 
-	public String getResponseDate() {
+	public Date getResponseDate() {
 		return responseDate;
 	}
 
-	public void setResponseDate(String responseDate) {
+	public void setResponseDate(Date responseDate) {
 		this.responseDate = responseDate;
 	}
 
@@ -267,11 +276,11 @@ public class Question implements java.io.Serializable {
 		this.questionState = questionState;
 	}
 
-	public String getRequestDate() {
+	public Date getRequestDate() {
 		return requestDate;
 	}
 
-	public void setRequestDate(String requestDate) {
+	public void setRequestDate(Date requestDate) {
 		this.requestDate = requestDate;
 	}
 
@@ -283,6 +292,30 @@ public class Question implements java.io.Serializable {
 		this.voiceNote = voiceNote;
 	}
 
+	public Byte getRequestorLevel() {
+		return requestorLevel;
+	}
+
+	public void setRequestorLevel(Byte requestorLevel) {
+		this.requestorLevel = requestorLevel;
+	}
+
+	public String getAnswerContent() {
+		return answerContent;
+	}
+
+	public void setAnswerContent(String answerContent) {
+		this.answerContent = answerContent;
+	}
+
+	public int getAnswerTime() {
+		return answerTime;
+	}
+
+	public void setAnswerTime(int answerTime) {
+		this.answerTime = answerTime;
+	}
+
 	@Override
 	public String toString() {
 		return "Question [questionId=" + questionId + ", requestorName=" + requestorName + ", requestorImg="
@@ -290,12 +323,14 @@ public class Question implements java.io.Serializable {
 				+ ", requestorPost=" + requestorPost + ", responsePost=" + responsePost + ", numberListen="
 				+ numberListen + ", questionLike=" + questionLike + ", requestorId=" + requestorId + ", responserImg="
 				+ responserImg + ", responserName=" + responserName + ", responserListenNumber=" + responserListenNumber
-				+ ", responseInstitution=" + responseInstitution + ", responseLevel=" + responseLevel + ", responseId="
-				+ responseId + ", responseDate=" + responseDate + ", questionContent=" + questionContent
-				+ ", questionContentVoice=" + questionContentVoice + ", questionType=" + questionType + ", money="
-				+ money + ", questionState=" + questionState + ", requestDate=" + requestDate + ", voiceNote="
-				+ voiceNote + "]";
+				+ ", responseInstitution=" + responseInstitution + ", responseLevel=" + responseLevel
+				+ ", requestorLevel=" + requestorLevel + ", responseId=" + responseId + ", responseDate=" + responseDate
+				+ ", questionContent=" + questionContent + ", answerContent=" + answerContent + ", answerTime="
+				+ answerTime + ", questionContentVoice=" + questionContentVoice + ", questionType=" + questionType
+				+ ", money=" + money + ", questionState=" + questionState + ", requestDate=" + requestDate
+				+ ", voiceNote=" + voiceNote + "]";
 	}
+
 
 
 }

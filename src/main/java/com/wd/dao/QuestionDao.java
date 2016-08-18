@@ -16,6 +16,16 @@ import com.wd.domain.Question;
 *    
 */
 public interface QuestionDao extends PagingAndSortingRepository<Question, Long> {
-	
+	/**      
+	* 方法描述：根据问题类型分页查询问题信息
+	* 备注：
+	*/
 	public Page<Question> findByQuestionType(String questionType, Pageable pageRequest);
+	
+	/**      
+	* 方法描述：根据问题ID获得问题
+	* 备注：
+	*/
+	public Question findByQuestionId(Long questionId);
+	
 }
