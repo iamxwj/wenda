@@ -1,6 +1,5 @@
 package com.wd.service;
 
-import java.util.Map;
 
 import com.wd.data.ResponseData;
 
@@ -58,4 +57,13 @@ public interface MyselfService {
 	 */
 
 	public ResponseData getMyListenByQueryType(Byte queryType,long userId,int page,int pageSize);
+	/**
+	 * 通过条件查询我所回答过的
+	 * @param userId
+	 * @param queryType
+	 * @param page
+	 * @param pageSize
+	 * @return
+	 */
+	public ResponseData getMyAnswerList(long responseId, Byte queryType, int page, int pageSize);
 }

@@ -1,5 +1,7 @@
 package com.wd.service.impl;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -8,11 +10,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.wd.dao.InstitutionInfoDao;
+import com.wd.dao.InvestorInfoDao;
 import com.wd.dao.QuestionDao;
 import com.wd.dao.UserListenDao;
 import com.wd.data.ResponseData;
+import com.wd.domain.InstitutionInfoEntity;
+import com.wd.domain.InvestorInfoEntity;
 import com.wd.domain.Question;
 import com.wd.domain.UserListenEntity;
 import com.wd.service.MyselfService;
@@ -31,6 +36,12 @@ public class MyselfServiceImpl implements MyselfService {
 	
 	@Autowired
 	private UserListenDao userListenDao;
+	
+	@Autowired
+	private InvestorInfoDao investorInfoDao;
+	
+	@Autowired
+	private InstitutionInfoDao institutionInfoDao;
 	/**
 	 * 显示我自身的悬赏提问
 	 */
@@ -38,7 +49,7 @@ public class MyselfServiceImpl implements MyselfService {
 	@Transactional(readOnly=true)
 	public ResponseData getMyQuestion(Long requestorId,int page,int pageSize) {
 		ResponseData responseData = new ResponseData(false, "获取失败", null);
-		Page<Question> myQuestionPage = questionDao.findByRequestorIdAndResponseLevelNotNull(requestorId, new PageRequest(page-1, pageSize));
+		Page<Question> myQuestionPage = questionDao.findByRequestorIdAndResponseLevelNotNull(requestorId, new PageRequest(page, pageSize));
 		if(myQuestionPage!=null){
 			responseData = new ResponseData(true, "获取成功", myQuestionPage);
 		}
@@ -108,34 +119,89 @@ public class MyselfServiceImpl implements MyselfService {
 			return new ResponseData(true, "收听成功", userListen);
 		}
 	}
-
+	/**
+	 * 根据queryType 来查询我收听的 以及相关信息，
+	 * queryType 可以为1,2,3
+	 * 1代表查询收听问题
+	 * 2代表查询收听任务
+	 * 3代表查询收听机构
+	 */
 	@Override
 	@Transactional(readOnly=true)
 	public ResponseData getMyListenByQueryType(Byte queryType,long userId,int page,int pageSize) {
 		ResponseData responseData = new ResponseData(false, "获取失败", null);
+		Map<String,Object> map = new HashMap<>();
+		List list = new ArrayList<>();
 		if(queryType==(byte)1){
 			Page<UserListenEntity> userListenList = userListenDao.findByUserIdAndQuestionIdNotNull(userId,new PageRequest(page, pageSize));
 			if(userListenList!=null){
-				responseData = new ResponseData(true, "成功获取", userListenList);
-				/*List<UserListenEntity> content = userListenList.getContent();
+				List<UserListenEntity> content = userListenList.getContent();
 				if(content!=null && content.size()!=0){
 					for (UserListenEntity userListenEntity : content) {
 						Long questionId = userListenEntity.getQuestionId();
-						Question findOne = questionDao.findOne(questionId);
+						Question question = questionDao.findOne(questionId);
+						list.add(question);
 					}
-				}*/
+				}
+				map.put("userListenList", userListenList);
+				map.put("list", list);
+				responseData = new ResponseData(true, "成功获取", map);
 			}
 		}
 		if(queryType==(byte)2){
 			Page<UserListenEntity> userListenList = userListenDao.findByUserIdAndInvestorIdNotNull(userId,new PageRequest(page, pageSize));
 			if(userListenList!=null){
-				responseData = new ResponseData(true, "成功获取", userListenList);
+				List<UserListenEntity> content = userListenList.getContent();
+				if(content!=null && content.size()!=0){
+					for (UserListenEntity userListenEntity : content) {
+						Long investorId = userListenEntity.getInvestorId();
+						InvestorInfoEntity investor = investorInfoDao.findOne(investorId);
+						list.add(investor);
+					}
+				}
+				map.put("userListenList", userListenList);
+				map.put("list", list);
+				responseData = new ResponseData(true, "成功获取", map);
 			}
 		}
 		if(queryType==(byte)3){
 			Page<UserListenEntity> userListenList = userListenDao.findByUserIdAndInstitutionIdNotNull(userId,new PageRequest(page, pageSize));
 			if(userListenList!=null){
-				responseData = new ResponseData(true, "成功获取", userListenList);
+				List<UserListenEntity> content = userListenList.getContent();
+				if(content!=null && content.size()!=0){
+					for (UserListenEntity userListenEntity : content) {
+						Long institutionId = userListenEntity.getInstitutionId();
+						InstitutionInfoEntity institution = institutionInfoDao.findOne(institutionId);
+						list.add(institution);
+					}
+				}
+				map.put("userListenList", userListenList);
+				map.put("list", list);
+				responseData = new ResponseData(true, "成功获取", map);
+			}
+		}
+		return responseData;
+	}
+	/**
+	 * 通过查询条件 查询我答 分为悬赏问题和定向问题 1为悬赏 2为定向
+	 */
+	@Override
+	@Transactional(readOnly=true)
+	public ResponseData getMyAnswerList(long responseId, Byte queryType, int page, int pageSize) {
+		ResponseData responseData = new ResponseData(false,"获取失败", null);
+		if(queryType==(byte)1){
+			Page<Question> answerList= questionDao.findByResponseIdAndResponseLevelNotNull(responseId,new PageRequest(page, pageSize));
+			if(answerList!=null){
+				responseData = new ResponseData(true,"成功获取", answerList);
+				return responseData;
+			}
+		}
+		if(queryType==(byte)2){
+			Page<Question> answerList= questionDao.findByResponseIdAndResponseLevelIsNull(responseId,new PageRequest(page, pageSize));
+			if(answerList!=null){
+				responseData = new ResponseData(true, "成功获取", answerList);
+				return responseData;
+						
 			}
 		}
 		return responseData;

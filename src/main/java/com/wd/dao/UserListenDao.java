@@ -38,7 +38,7 @@ public interface UserListenDao extends PagingAndSortingRepository<UserListenEnti
 	 */
 	UserListenEntity findByUserIdAndQuestionId(long userId, long questionId);
 	/**
-	 * 通过userId以及questionId部位null来查询
+	 * 通过userId以及questionId不是null来查询
 	 * @param userId
 	 * @return
 	 */

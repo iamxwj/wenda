@@ -29,14 +29,28 @@ public class MyselfController {
 	 * @param map
 	 * @return
 	 */
-	@RequestMapping(value="/reward_question")
+	@RequestMapping(value="/question_list")
 	@ResponseBody
 	public ResponseData getMyQuestionPage(@RequestBody Map map){
-		int requestorId1 = (int)map.get("requestorId");
+		Byte queryType = null;
+		Object queryType1 = map.get("queryType");
+		ResponseData responseData = null;
+		if(queryType1==null){
+			queryType=(byte)1;
+		}else{
+			int queryType2=(int)queryType1;
+			queryType=(byte)queryType2;
+		}
+		int requestorId1 = (int)map.get("userId");
 		long requestorId = (long)requestorId1;
 		int page=(int)map.get("page");
 		int pageSize= (int)map.get("pageSize");
-		ResponseData responseData = myselfService.getMyQuestion(requestorId, page, pageSize);
+		if(queryType==(byte)1){
+			responseData = myselfService.getMyQuestion(requestorId, page, pageSize);
+		}
+		if(queryType==(byte)2){
+			responseData = myselfService.getMyDirectionalQuestion(requestorId, page, pageSize);
+		}
 		return responseData;
 	}
 	
@@ -45,7 +59,7 @@ public class MyselfController {
 	 * @param map
 	 * @return
 	 */
-	@RequestMapping("/directional_question")
+	/*@RequestMapping("/directional_question")
 	@ResponseBody
 	public ResponseData getMyDirectionalQuestionPage(@RequestBody Map map){
 		int requestorId1 = (int)map.get("requestorId");
@@ -55,7 +69,7 @@ public class MyselfController {
 		ResponseData responseData = myselfService.getMyDirectionalQuestion(requestorId, page, pageSize);
 		return responseData;
 	}
-	
+	*/
 	/**
 	 * 用于收听投资人或者机构以及问题收听
 	 * @param map
@@ -91,7 +105,11 @@ public class MyselfController {
 			return responseData;
 		}
 	}
-	
+	/**
+	 * 我的收听 根据queryType来查询
+	 * @param map
+	 * @return
+	 */
 	@RequestMapping("/listen_list")
 	@ResponseBody
 	public ResponseData getMyListenList(@RequestBody Map map){
@@ -109,6 +127,29 @@ public class MyselfController {
 		int page = (int)map.get("page");
 		int pageSize = (int)map.get("pageSize");
 		ResponseData responseData = myselfService.getMyListenByQueryType(queryType,userId,page,pageSize);
+		return responseData;
+	}
+	/**
+	 * 根据queryType来进行我答列表的分页显示
+	 * @param map
+	 * @return
+	 */
+	@RequestMapping("/answer_list")
+	@ResponseBody
+	public ResponseData getMyAnswerList(@RequestBody Map map){
+		Byte queryType = null;
+		Object queryType1 = map.get("queryType");
+		if(queryType1==null){
+			queryType=(byte)1;
+		}else{
+			int queryType2=(int)queryType1;
+			queryType=(byte)queryType2;
+		}
+		int userId1 = (int)map.get("userId");
+		long userId = (long)userId1;
+		int page = (int)map.get("page");
+		int pageSize = (int)map.get("pageSize");
+		ResponseData responseData=myselfService.getMyAnswerList(userId,queryType,page,pageSize);
 		return responseData;
 	}
 }
