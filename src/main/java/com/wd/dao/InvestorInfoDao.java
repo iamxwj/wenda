@@ -55,6 +55,17 @@ public interface InvestorInfoDao extends JpaSpecificationExecutor<InvestorInfoEn
     
     public Page<InvestorInfoEntity> findByLevelType(Byte levelType, Pageable pageable);
     
+    /**      
+     * 方法描述： 查询热门人物
+     * 备注：
+     */
     @Query("select investor from InvestorInfoEntity investor order by listened desc")
     public Page<InvestorInfoEntity> findByHot(Pageable pageable);
+    
+    /**      
+	 * 方法描述： 查询推荐人物
+	 * 备注：
+	 */
+    @Query("select investor from InvestorInfoEntity investor order by answerNumber desc")
+    public Page<InvestorInfoEntity> findBySupport(Pageable pageable);
 }

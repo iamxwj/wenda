@@ -427,7 +427,31 @@ public class InvestorServiceImpl implements InvestorService {
 	public ResponseData findByHot(int page, int pagesize) {
 		ResponseData responseData = new ResponseData(false, "无人物数据！", null);
 		Pageable pageable = new PageRequest(page, pagesize);
+//		List<InvestorInfoEntity> investorInfoList = investorInfoDao.findByHot(pageable);
 		Page<InvestorInfoEntity> investorInfoList = investorInfoDao.findByHot(pageable);
+//		for(int i=0;i<investorInfoList.size();i++){
+//			String firstFields = investorInfoList.get(i).getFirstFields();
+//			String[] ss = new String[40];
+//			ss = firstFields.split("|");
+//			investorInfoList.get(i).setFirstFields(ss);
+//		}
+		if(investorInfoList!=null){
+			responseData.setResult(true);
+			responseData.setMessage("查询成功！");
+			responseData.setObj(investorInfoList);
+		}
+		return responseData;
+	}
+	
+	/**      
+	 * 方法描述： 查询推荐人物
+	 * 备注：
+	 */
+	@Override
+	public ResponseData findBySupport(int page, int pagesize) {
+		ResponseData responseData = new ResponseData(false, "无人物数据！", null);
+		Pageable pageable = new PageRequest(page, pagesize);
+		Page<InvestorInfoEntity> investorInfoList = investorInfoDao.findBySupport(pageable);
 		if(investorInfoList!=null){
 			responseData.setResult(true);
 			responseData.setMessage("查询成功！");

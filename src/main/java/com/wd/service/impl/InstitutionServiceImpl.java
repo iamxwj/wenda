@@ -16,6 +16,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -346,9 +347,30 @@ public class InstitutionServiceImpl implements InstitutionService {
         }
     }
 
+    
+    /**      
+	* 方法描述：分页查找机构信息
+	* 备注：
+	*/
+	@Override
+	public ResponseData findPageAll(int page, int pagesize) {
+		ResponseData responseData = new ResponseData(false, "无机构数据！", null);
+		Pageable pageable = new PageRequest(page, pagesize);
+		Page<InstitutionInfoEntity> investorInfoList = institutionInfoDao.findAll(pageable);
+		if(investorInfoList!=null){
+			responseData.setResult(true);
+			responseData.setMessage("查询成功！");
+			responseData.setObj(investorInfoList);
+		}
+		return responseData;
+	}
+
 //    private void updateES() {
 //        institutionRepository.deleteAll();
 //        Iterable<InstitutionDocument> documents = EntityDocumentConvertor.renderInstitutions(institutionInfoDao.findAll());
 //        institutionRepository.save(documents);
 //    }
+    
+    
+    
 }

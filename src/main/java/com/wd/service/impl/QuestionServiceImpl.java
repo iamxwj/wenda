@@ -1,12 +1,12 @@
 package com.wd.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.wd.dao.InvestorInfoDao;
@@ -154,11 +154,30 @@ public class QuestionServiceImpl implements QuestionService {
 	@Override
 	public ResponseData findByQuestionId(Long questionId) {
 		ResponseData responseData = new ResponseData(false, "查询失败！", null);
+		List<Question> newquestionList = new ArrayList<Question>();
 		Question newquestion = questionDao.findByQuestionId(questionId);
+		newquestionList.add(newquestion);
 		if(newquestion!=null){
 			responseData.setResult(true);
 			responseData.setMessage("发布成功！");
-			responseData.setObj(newquestion);
+			responseData.setObj(newquestionList);
+		}
+		return responseData;
+	}
+
+	/**      
+	 * 方法描述：根据回答者ID获得问题
+	 * 备注：
+	 */
+	@Override
+	public ResponseData findByResponseId(Long responseId,int page, int pagesize) {
+		ResponseData responseData = new ResponseData(false, "查询失败！", null);
+		Pageable pageable = new PageRequest(page, pagesize);
+		Page<Question> questionList = questionDao.findByResponseId(responseId, pageable);
+		if(questionList!=null){
+			responseData.setResult(true);
+			responseData.setMessage("查询成功！");
+			responseData.setObj(questionList);
 		}
 		return responseData;
 	}

@@ -34,6 +34,11 @@ public interface QuestionService {
 	* 备注：
 	*/
 	public ResponseData findByQuestionId(Long questionId);
+	/**      
+	 * 方法描述：根据回答者ID获得问题
+	 * 备注：
+	 */
+	public ResponseData findByResponseId(Long responseId,int page, int pagesize);
 	
 	
 //	/**

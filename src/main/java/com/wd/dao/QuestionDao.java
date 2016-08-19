@@ -1,4 +1,6 @@
 package com.wd.dao;
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -26,6 +28,13 @@ public interface QuestionDao extends PagingAndSortingRepository<Question, Long> 
 	* 方法描述：根据问题ID获得问题
 	* 备注：
 	*/
+	
 	public Question findByQuestionId(Long questionId);
+	
+	/**      
+	 * 方法描述：根据回答者ID获得问题
+	 * 备注：
+	 */
+	public Page<Question> findByResponseId(Long responseId, Pageable pageable);
 	
 }
