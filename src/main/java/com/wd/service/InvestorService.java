@@ -103,4 +103,9 @@ public interface InvestorService {
      * 备注：
      */
     public ResponseData findByHot(int page, int pagesize);
+    /**      
+	 * 方法描述： 查询推荐人物
+	 * 备注：
+	 */
+    public ResponseData findBySupport(int page, int pagesize);
 }

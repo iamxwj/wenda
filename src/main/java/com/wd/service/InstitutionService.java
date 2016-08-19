@@ -55,4 +55,10 @@ public interface InstitutionService {
     public ResponseData getFirstField(String firstField, int page, int size);
 
     public ResponseData getInstitutionLevel(Long institutionId);
+    
+    /**      
+	* 方法描述：分页查找机构信息
+	* 备注：
+	*/
+    public ResponseData findPageAll(int page, int pagesize);
 }

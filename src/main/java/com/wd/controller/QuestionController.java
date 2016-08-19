@@ -99,4 +99,15 @@ public class QuestionController {
 		return responseData;
 	}
 	
+	/**      
+	 * 方法描述：根据回答者ID获得问题
+	 * 备注：
+	 */
+	@RequestMapping("/findByResponseId")
+	@ResponseBody
+	public ResponseData findByResponseId(Long responseId,int page, int pagesize){
+		ResponseData responseData = questionService.findByResponseId(responseId, page, pagesize);
+		return responseData;
+	}
+	
 }

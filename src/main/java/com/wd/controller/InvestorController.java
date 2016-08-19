@@ -146,17 +146,27 @@ public class InvestorController {
 
 
     /**      
-	* 方法描述：根据人物类型，分页查询人物
+	* 方法描述：查询大佬人物
 	* 备注：
 	*/
-	@RequestMapping("/pageInvestorByType")
+	@RequestMapping("/findByBoss")
 	@ResponseBody
-	public ResponseData pageInvestorByType(Byte levelType, int page, int pagesize){
+	public ResponseData findByBoss(int page, int pagesize){
+		Byte levelType = 1;
 		ResponseData responseData = investorService.getInvestorPageByType(levelType, page, pagesize);
 		return responseData;
 	}
-	
-	
+	/**      
+	 * 方法描述：查询精英人物
+	 * 备注：
+	 */
+	@RequestMapping("/findByElite")
+	@ResponseBody
+	public ResponseData findByElite(int page, int pagesize){
+		Byte levelType = 2;
+		ResponseData responseData = investorService.getInvestorPageByType(levelType, page, pagesize);
+		return responseData;
+	}
 	/**      
 	 * 方法描述：查询热门人物
 	 * 备注：
@@ -165,6 +175,16 @@ public class InvestorController {
 	@ResponseBody
 	public ResponseData findByHot(int page, int pagesize){
 		ResponseData responseData = investorService.findByHot(page, pagesize);
+		return responseData;
+	}
+	/**      
+	 * 方法描述：查询推荐人物
+	 * 备注：
+	 */
+	@RequestMapping("/findBySupport")
+	@ResponseBody
+	public ResponseData findBySupport(int page, int pagesize){
+		ResponseData responseData = investorService.findBySupport(page, pagesize);
 		return responseData;
 	}
     
