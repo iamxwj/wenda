@@ -23,6 +23,21 @@ public interface QuestionDao extends PagingAndSortingRepository<Question, Long> 
 	* 备注：
 	*/
 	public Page<Question> findByQuestionType(String questionType, Pageable pageRequest);
+	/**
+	 * 用于查询我的所有悬赏问题
+	 * @param requestorId
+	 * @param pageRequest
+	 * @return
+	 */
+	public Page<Question> findByRequestorIdAndResponseLevelIsNull(Long requestorId,Pageable pageRequest);
+	
+	/**
+	 * 用于查询我的所有的定向问题
+	 * @param requestorId
+	 * @param pageRequest
+	 * @return
+	 */
+	public Page<Question> findByRequestorIdAndResponseLevelNotNull(Long requestorId,Pageable pageRequest);
 	
 	/**      
 	* 方法描述：根据问题ID获得问题
